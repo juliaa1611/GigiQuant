@@ -2,11 +2,6 @@
 
 int main(int argc, const char* argv[])
 {
-    if (argc < 3)
-    {
-        printf("Compilat fara toate fisierele!\n"); 
-        return 0;
-    }
 
     FILE *fin, *fout;
     fin = fopen(argv[1], "r");

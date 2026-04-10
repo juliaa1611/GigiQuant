@@ -88,3 +88,30 @@ double trunchiere(double x)
 {
     return trunc(x * 1000.0)/1000.0;
 }
+
+int verificaretask1(double *temp2, FILE *fin) {
+    char buffer[64];
+    fscanf(fin, "%63s", buffer);
+    if (strchr(buffer, '.') != NULL)
+    {
+        (*temp2) = atof(buffer);
+        return 1;
+    }
+    (*temp2) = atoi(buffer);
+    return 0;
+}
+
+void citirefisiertask1(FILE *fin, int n, node **head) {
+    for (int i = 0; i < n - 2; i ++) {
+        double temp;
+        fscanf(fin, "%lf", &temp);
+        adaugare(head, temp);
+    }
+}
+
+int task1sau4(FILE *fin, FILE *fout) {
+    int n;
+    if (fscanf(fin, "%d", &n) != 1 || n <= 1)
+        return -1;
+    return n;
+}

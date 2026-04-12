@@ -109,9 +109,40 @@ void citirefisiertask1(FILE *fin, int n, node **head) {
     }
 }
 
-int task1sau4(FILE *fin, FILE *fout) {
-    int n;
-    if (fscanf(fin, "%d", &n) != 1 || n <= 1)
-        return -1;
-    return n;
+void push(node **top, double newData)
+{
+    node *newNode = malloc(sizeof(node));
+    newNode->valoare = newData;
+    newNode->next = (*top);
+    (*top) = newNode;
+    return;
+}
+
+double pop(node **top)
+{
+    //if(isEmpty)...
+    node *temp = (*top);
+    double aux = temp->valoare; //sau (*top)->value
+    (*top) = (*top)->next;
+    free(temp);
+    return aux;
+}
+
+int isEmpty(const node *top)
+{
+    if (top == NULL)
+        return 1;
+    else
+        return 0;
+}
+
+void deleteStack(node **top)
+{
+    while(!isEmpty(*top))
+    {
+        node *temp = (*top);
+        (*top) = (*top)->next;
+        free(temp);
+    }
+    return;
 }

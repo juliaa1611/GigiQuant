@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <ctype.h>
 
 typedef struct node
 {
@@ -19,4 +20,7 @@ double deviatia_standard(node *head, double rand_mediu);
 double trunchiere(double x);
 int verificaretask1(double *temp2, FILE *fin);
 void citirefisiertask1(FILE *fin, int n, node **head);
-int task1sau4(FILE *fin, FILE *fout);
+void push(node **top, double newData);
+double pop(node **top);
+int isEmpty(const node *top);
+void deleteStack(node **top);

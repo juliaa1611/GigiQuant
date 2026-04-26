@@ -21,8 +21,8 @@ int main(int argc, const char* argv[])
         return 0;
     }
 
-    char buffer[64];
-    fgets(buffer, 64, fin);
+    char buffer[128];
+    fgets(buffer, 128, fin);
 
     if (isdigit(buffer[0])) { //daca e nr => task1 sau task4
         int n = atoi(buffer);
@@ -48,8 +48,7 @@ int main(int argc, const char* argv[])
 
             stergereLista(&head);
         }
-        else
-        {
+        else {
             fprintf(fout, "task 4\n");
         }
     }
@@ -60,15 +59,15 @@ int main(int argc, const char* argv[])
             node *piata3 = NULL; char p3[32];
 
             sscanf(buffer, "%31[^\r\n]", p1);
-            while(fgets(buffer, 64, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
+            while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
                 push(&piata1, atof(buffer));
 
             sscanf(buffer, "%31[^\r\n]", p2);
-            while(fgets(buffer, 64, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
+            while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
                 push(&piata2, atof(buffer));
 
             sscanf(buffer, "%31[^\r\n]", p3);
-            while(fgets(buffer, 64, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9') 
+            while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9') 
                 push(&piata3, atof(buffer));
 
             int zi = 1;
@@ -82,7 +81,7 @@ int main(int argc, const char* argv[])
                 if (x == z && z != y)
                     fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(x - y), p2);
                 if (y == z && x != y)
-                    fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);
+                    fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);  
                 zi ++;
             }
 
@@ -91,10 +90,37 @@ int main(int argc, const char* argv[])
             deleteStack(&piata3);
         }
         else { //task3
-            
+            actiune vector[15];
+            int nra, nrp, curent = 0; const char *temp = strtok(buffer, ","); //pana la prima virgula
+            while (temp != NULL) {
+                strcpy(vector[curent].nume, temp);
+                curent ++;
+                temp = strtok(NULL, ",\n"); // de unde a ramas la urmatoarea virgula sau newline
+            }
+            nra = curent; // nr de actiuni (nr de el de pe linie)
+            for (int linie = 0; linie < 5; linie ++) { //pentru preturi
+                if (fgets(buffer, 128, fin) == NULL) break; 
+
+                curent = 0; temp = strtok(buffer, ",\n");
+                while (temp != NULL) {
+                    float x = atof(temp);
+                    vector[curent].pret[linie] = x;
+                    curent ++; 
+                    temp = strtok(NULL, ",\n");
+                }
+                nrp = linie + 1; //nr de preturi (nr de el de pe coloana)
+            } //stim fiecare actiune si preturile ei.
+
+            tree *root = newTreeNode("");
+            for (int i = 0; i < nra; i ++) 
+                insertTree(root, vector, i, nrp);
+            levelOrderTraversal(root, fout);
+
+            char mtemp[12][15];
+            actiuneSimetrica(root->left, root->right, vector, mtemp);
+            deleteTree(&root);
         }
     }
-    
 
     fclose(fin);
     fclose(fout);

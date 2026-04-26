@@ -12,8 +12,8 @@
   <line>Command: /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/in/data19.in /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/out/data19.out</line>
 </preamble>
 
-<pid>73683</pid>
-<ppid>73633</ppid>
+<pid>30528</pid>
+<ppid>30478</ppid>
 <tool>memcheck</tool>
 
 <args>
@@ -32,13 +32,13 @@
 
 <status>
   <state>RUNNING</state>
-  <time>00:00:00:00.119 </time>
+  <time>00:00:00:00.134 </time>
 </status>
 
 
 <status>
   <state>FINISHED</state>
-  <time>00:00:00:00.804 </time>
+  <time>00:00:00:01.985 </time>
 </status>
 
 <errorcounts>

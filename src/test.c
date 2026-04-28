@@ -76,12 +76,27 @@ int main(int argc, const char* argv[])
                 float y = pop(&piata2);
                 float z = pop(&piata3);
 
-                if (x == y && y != z) 
-                    fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(x - z), p3);
-                if (x == z && z != y)
-                    fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(x - y), p2);
-                if (y == z && x != y)
-                    fprintf (fout, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);  
+                Queue *Qhead = createQueue();
+                if (x == y && y != z) {
+                    sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - z), p3);
+                    Qpush(Qhead, buffer);
+                }
+                if (x == z && z != y) {
+                    sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - y), p2);
+                    Qpush(Qhead, buffer);
+                }
+                if (y == z && x != y) {
+                    sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);
+                    Qpush(Qhead, buffer);
+                } 
+                while (Qhead->front != NULL) {
+                    char *msg = Qpop(Qhead); 
+                    if (msg != NULL) {
+                        fprintf(fout, "%s", msg);
+                        free(msg);
+                    }
+                }
+                free(Qhead);
                 zi ++;
             }
 

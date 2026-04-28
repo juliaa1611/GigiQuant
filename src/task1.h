@@ -4,8 +4,7 @@
 #include <math.h>
 #include <ctype.h>
 
-typedef struct node
-{
+typedef struct node {
     double valoare;
     double randament;
     struct node *next;
@@ -20,6 +19,15 @@ typedef struct tree {
     char nume[128];
     struct tree *left, *right;
 } tree;
+
+typedef struct Qnode {
+    char value[64];
+    struct Qnode *next;
+} Qnode;
+
+typedef struct Queue {
+    Qnode *front, *rear;
+} Queue;
 
 node *creeareNod(double value);
 void adaugare(node **head, double value);
@@ -44,3 +52,6 @@ void deleteTree(struct tree** node_ref);
 void deleteTreeUtil(struct tree* root);
 int isLeaf(const tree *root);
 void actiuneSimetrica(tree *goleft, tree *goright, actiune vector[], char temp[][15]);
+Queue* createQueue();
+char *Qpop(Queue *q);
+void Qpush(Queue *q,const char *v);

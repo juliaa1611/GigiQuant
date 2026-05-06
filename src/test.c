@@ -1,4 +1,7 @@
 #include "task1.h"
+#include "task2.h"
+#include "task3.h"
+#include "comun.h"
 
 int main(int argc, const char* argv[])
 {
@@ -105,7 +108,7 @@ int main(int argc, const char* argv[])
             deleteStack(&piata3);
         }
         else { //task3
-            actiune vector[15];
+            actiune vector[10];
             int nra, nrp, curent = 0; const char *temp = strtok(buffer, ","); //pana la prima virgula
             while (temp != NULL) {
                 strcpy(vector[curent].nume, temp);
@@ -129,10 +132,10 @@ int main(int argc, const char* argv[])
             tree *root = newTreeNode("");
             for (int i = 0; i < nra; i ++) 
                 insertTree(root, vector, i, nrp);
-            levelOrderTraversal(root, fout);
+            //levelOrderTraversal(root, fout);
 
             char mtemp[12][15];
-            actiuneSimetrica(root->left, root->right, vector, mtemp);
+            actiuneSimetrica(root->left, root->right, vector, mtemp, fout);
             deleteTree(&root);
         }
     }

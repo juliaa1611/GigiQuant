@@ -1,5 +1,4 @@
-#include <task2.h>
-#include <comun.h>
+#include "task2.h"
 
 void push(node **top, double newData) {
     node *newNode = malloc(sizeof(node));

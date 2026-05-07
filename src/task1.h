@@ -1,4 +1,5 @@
-#include <comun.h>
+#pragma once
+#include "comun.h"
 
 node *creeareNod(double value);
 void adaugare(node **head, double value);

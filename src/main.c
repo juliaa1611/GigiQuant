@@ -1,7 +1,6 @@
 #include "task1.h"
 #include "task2.h"
 #include "task3.h"
-#include "comun.h"
 
 int main(int argc, const char* argv[])
 {
@@ -134,8 +133,14 @@ int main(int argc, const char* argv[])
                 insertTree(root, vector, i, nrp);
             //levelOrderTraversal(root, fout);
 
-            char mtemp[12][15];
-            actiuneSimetrica(root->left, root->right, vector, mtemp, fout);
+            char mtemp[12][24]; int total_sim = 0;
+            actiuneSimetrica(root->left, root->right, vector, nra, mtemp, &total_sim, fout);
+            for (int i = 0; i < nra; i ++) {
+                for (int j = 0; j < total_sim; j ++) {
+                    if (strncmp(mtemp[j], vector[i].nume, 4) == 0)//primele 4 litere egale
+                        fprintf(fout, "%s\n", mtemp[j]);
+                }            
+            }
             deleteTree(&root);
         }
     }

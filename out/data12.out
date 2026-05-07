@@ -1,2 +1,5 @@
-:PYPL sunt simetrice cu: CCHP
-:AAPL NVDA QCOM AMAT sunt simetrice cu: SPOT
+AAPL-SPOT
+NVDA-SPOT
+QCOM-SPOT
+CCHP-PYPL
+SPOT-AMAT

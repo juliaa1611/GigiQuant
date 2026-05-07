@@ -1,7 +1,8 @@
-#include <task3.h>
+#include "task3.h"
 
 tree *newTreeNode(const char *numeNou) {
     tree *node = malloc(sizeof(struct tree));
+    if (node == NULL) return NULL;
     strcpy(node->nume, numeNou);
     node->left = NULL;
     node->right = NULL;
@@ -38,37 +39,6 @@ void insertTree(tree *root, actiune v[], int i, int nrp) {
     }
 }
 
-int height(tree* root) {
-    int hs, hd;
-    if (root == NULL) return -1;
-    
-    hs = height(root->left);
-    hd = height(root->right);
-    
-    return 1 + ((hs > hd) ? hs : hd);
-}
-
-void printLevel(tree* root, int level, FILE *fout) {
-    if (root == NULL) return;
-    
-    if (level == 0) {
-        fprintf(fout, "%s - ", root->nume);
-    } else if (level > 0) {
-        printLevel(root->left, level - 1, fout);
-        printLevel(root->right, level - 1, fout);
-    }
-}
-
-void levelOrderTraversal(tree* root, FILE *fout) {
-    int h = height(root);
-    int i;
-    
-    for (i = 0; i <= h; i++) {
-        printLevel(root, i, fout);
-        fprintf(fout, "\n");
-    }
-}
-
 void deleteTreeUtil(struct tree* root) {
        if (root == NULL) return;
        deleteTreeUtil(root->left);
@@ -87,14 +57,53 @@ int isLeaf(const tree *root) {
     return 0;
 }
 
-void actiuneSimetrica(tree *goleft, tree *goright, actiune vector[], char temp[][15], FILE *fout) {
+int find_index(actiune vector[], int nra, const char *a) {
+    for (int i = 0; i < nra; i ++) {
+        if(strcmp(vector[i].nume, a) == 0)
+            return i;
+    }
+    return -1;
+}
+
+void actiuneSimetrica(tree *goleft, tree *goright, actiune vector[], int nra, char mtemp[][24], int *total_sim, FILE *fout) {
     if (goleft == NULL || goright == NULL)
         return;
 
     if (isLeaf(goleft) && isLeaf(goright)) { //suntem in 2 noduri simetrice din arbore
-        fprintf(fout, ":%s sunt simetrice cu: %s\n", goleft->nume, goright->nume);
+        //fprintf(fout, ":%s sunt simetrice cu: %s\n", goleft->nume, goright->nume);
+        char temp_left[64]; strcpy(temp_left, goleft->nume);
+        char temp_right[64]; strcpy(temp_right, goright->nume);
 
+        char *ast[10]; char *adr[10]; //vector pt fiecare din actiuni
+        int nrs = 0; int ndr = 0; //nr pt fiecare
+
+        char *buffer = strtok(temp_left, " \n");
+        while (buffer != NULL) {
+            ast[nrs] = buffer;
+            nrs ++;
+            buffer = strtok(NULL, " \n");
+        } //am adaugat toate act din stanga
+
+        buffer = strtok(temp_right, " \n");
+        while (buffer != NULL) {
+            adr[ndr] = buffer;
+            ndr ++;
+            buffer = strtok(NULL, " \n");
+        } //am adaugat toate act din dreapta
+
+        for (int i = 0; i < nrs; i ++) {
+            int index_left = find_index(vector, nra, ast[i]);
+            for (int j = 0; j < ndr; j ++) {
+                int index_right = find_index(vector, nra, adr[j]);
+
+                if (index_left < index_right) 
+                    sprintf(mtemp[(*total_sim)], "%s-%s", ast[i], adr[j]);
+                else 
+                    sprintf(mtemp[(*total_sim)], "%s-%s", adr[j], ast[i]);
+                (*total_sim)++;
+            }
+        }
     }
-    actiuneSimetrica(goleft->left, goright->right, vector, temp, fout);
-    actiuneSimetrica(goleft->right, goright->left, vector, temp, fout);
+    actiuneSimetrica(goleft->left, goright->right, vector, nra, mtemp, total_sim, fout);
+    actiuneSimetrica(goleft->right, goright->left, vector, nra, mtemp, total_sim, fout);
 }

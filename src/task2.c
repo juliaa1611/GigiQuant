@@ -71,3 +71,49 @@ Queue* createQueue() {
     q->rear = NULL;
     return q;
 }
+
+void citire_piete(node **piata1, node **piata2, node **piata3, char *p1, char *p2, char *p3, char *buffer, FILE *fin) {
+    sscanf(buffer, "%31[^\r\n]", p1);
+    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
+        push(piata1, atof(buffer));
+
+    sscanf(buffer, "%31[^\r\n]", p2);
+    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
+        push(piata2, atof(buffer));
+
+    sscanf(buffer, "%31[^\r\n]", p3);
+    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9') 
+        push(piata3, atof(buffer));
+}
+
+void afisare_piete (node *piata1, node *piata2, node *piata3, const char *p1, const char *p2, const char *p3, char *buffer, FILE *fout) {
+    int zi = 1;
+    while (piata1 != NULL && piata2 != NULL && piata3 != NULL) {
+        float x = pop(&piata1);
+        float y = pop(&piata2);
+        float z = pop(&piata3);
+
+        Queue *Qhead = createQueue();
+        if (x == y && y != z) {
+            sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - z), p3);
+            Qpush(Qhead, buffer);
+        }
+        if (x == z && z != y) {
+            sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - y), p2);
+            Qpush(Qhead, buffer);
+        }
+        if (y == z && x != y) {
+            sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);
+            Qpush(Qhead, buffer);
+        } 
+        while (Qhead->front != NULL) {
+            char *msg = Qpop(Qhead); 
+            if (msg != NULL) {
+                fprintf(fout, "%s", msg);
+                free(msg);
+            }
+        }
+        free(Qhead);
+        zi ++;
+    }
+} 

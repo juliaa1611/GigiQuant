@@ -65,6 +65,29 @@ int find_index(actiune vector[], int nra, const char *a) {
     return -1;
 }
 
+void read_names(actiune vector[], const char *temp, int *curent) {
+    while (temp != NULL) {
+        strcpy(vector[(*curent)].nume, temp);
+        (*curent) ++;
+        temp = strtok(NULL, ",\n"); // de unde a ramas la urmatoarea virgula sau newline
+    }
+}
+
+void read_value(actiune vector[], int *nrp, const char *temp, char *buffer, FILE *fin) {
+    for (int linie = 0; linie < 5; linie ++) { //pentru preturi
+        if (fgets(buffer, 128, fin) == NULL) break; 
+
+        int curent = 0; temp = strtok(buffer, ",\n");
+        while (temp != NULL) {
+            float x = atof(temp);
+            vector[curent].pret[linie] = x;
+            curent ++; 
+            temp = strtok(NULL, ",\n");
+        }
+        (*nrp) = linie + 1; //nr de preturi (nr de el de pe coloana)
+    } //stim fiecare actiune si preturile ei.
+}
+
 void actiuneSimetrica(tree *goleft, tree *goright, actiune vector[], int nra, char mtemp[][24], int *total_sim, FILE *fout) {
     if (goleft == NULL || goright == NULL)
         return;
@@ -106,4 +129,14 @@ void actiuneSimetrica(tree *goleft, tree *goright, actiune vector[], int nra, ch
     }
     actiuneSimetrica(goleft->left, goright->right, vector, nra, mtemp, total_sim, fout);
     actiuneSimetrica(goleft->right, goright->left, vector, nra, mtemp, total_sim, fout);
+}
+
+void afisareSimetrica(
+    const char mtemp[][24], actiune vector[], int nra, int total_sim, FILE *fout) {
+    for (int i = 0; i < nra; i ++) {
+        for (int j = 0; j < total_sim; j ++) {
+            if (strncmp(mtemp[j], vector[i].nume, 4) == 0)//primele 4 litere egale
+                fprintf(fout, "%s\n", mtemp[j]);
+        }            
+    }
 }

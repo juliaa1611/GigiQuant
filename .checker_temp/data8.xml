@@ -12,8 +12,8 @@
   <line>Command: /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/in/data8.in /home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/out/data8.out</line>
 </preamble>
 
-<pid>48992</pid>
-<ppid>48965</ppid>
+<pid>66632</pid>
+<ppid>66619</ppid>
 <tool>memcheck</tool>
 
 <args>
@@ -32,16 +32,589 @@
 
 <status>
   <state>RUNNING</state>
-  <time>00:00:00:00.083 </time>
+  <time>00:00:00:00.116 </time>
 </status>
+
+<error>
+  <unique>0x0</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x109B97</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x1098F2</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b6e730 is 16 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109EE9</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>92</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109D94</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x1</unique>
+  <tid>1</tid>
+  <kind>InvalidFree</kind>
+  <what>Invalid free() / delete / delete[] / realloc()</what>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109BAD</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>29</line>
+    </frame>
+    <frame>
+      <ip>0x1098F2</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b6e720 is 0 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109EE9</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>92</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109D94</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>78</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4a</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x109B97</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x109901</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b6f510 is 16 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109EFE</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>93</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109E07</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x4b</unique>
+  <tid>1</tid>
+  <kind>InvalidFree</kind>
+  <what>Invalid free() / delete / delete[] / realloc()</what>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109BAD</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>29</line>
+    </frame>
+    <frame>
+      <ip>0x109901</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b6f500 is 0 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109EFE</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>93</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109E07</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>82</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x94</unique>
+  <tid>1</tid>
+  <kind>InvalidRead</kind>
+  <what>Invalid read of size 8</what>
+  <stack>
+    <frame>
+      <ip>0x109B97</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>28</line>
+    </frame>
+    <frame>
+      <ip>0x109910</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b71010 is 16 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109F13</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>94</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109E7A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
+
+<error>
+  <unique>0x95</unique>
+  <tid>1</tid>
+  <kind>InvalidFree</kind>
+  <what>Invalid free() / delete / delete[] / realloc()</what>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109BAD</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>deleteStack</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>29</line>
+    </frame>
+    <frame>
+      <ip>0x109910</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>63</line>
+    </frame>
+  </stack>
+  <auxwhat>Address 0x4b71000 is 0 bytes inside a block of size 24 free'd</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x484988F</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>free</fn>
+    </frame>
+    <frame>
+      <ip>0x109B4A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>pop</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>15</line>
+    </frame>
+    <frame>
+      <ip>0x109F13</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>afisare_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>94</line>
+    </frame>
+    <frame>
+      <ip>0x1098DF</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>61</line>
+    </frame>
+  </stack>
+  <auxwhat>Block was alloc'd at</auxwhat>
+  <stack>
+    <frame>
+      <ip>0x4846828</ip>
+      <obj>/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so</obj>
+      <fn>malloc</fn>
+    </frame>
+    <frame>
+      <ip>0x109AD6</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>push</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>4</line>
+    </frame>
+    <frame>
+      <ip>0x109E7A</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>citire_piete</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>task2.c</file>
+      <line>86</line>
+    </frame>
+    <frame>
+      <ip>0x10989B</ip>
+      <obj>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/test</obj>
+      <fn>main</fn>
+      <dir>/home/giulia/Documents/AA1/PA/checkerPA/project-data/gigiquant/./src</dir>
+      <file>main.c</file>
+      <line>60</line>
+    </frame>
+  </stack>
+</error>
 
 
 <status>
   <state>FINISHED</state>
-  <time>00:00:00:01.990 </time>
+  <time>00:00:00:01.687 </time>
 </status>
 
 <errorcounts>
+  <pair>
+    <count>37</count>
+    <unique>0x95</unique>
+  </pair>
+  <pair>
+    <count>37</count>
+    <unique>0x94</unique>
+  </pair>
+  <pair>
+    <count>37</count>
+    <unique>0x4b</unique>
+  </pair>
+  <pair>
+    <count>37</count>
+    <unique>0x4a</unique>
+  </pair>
+  <pair>
+    <count>37</count>
+    <unique>0x1</unique>
+  </pair>
+  <pair>
+    <count>37</count>
+    <unique>0x0</unique>
+  </pair>
 </errorcounts>
 
 <suppcounts>

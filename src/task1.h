@@ -10,3 +10,4 @@ double deviatia_standard(node *head, double rand_mediu);
 double trunchiere(double x);
 int verificaretask1(double *temp2, FILE *fin);
 void citirefisiertask1(FILE *fin, int n, node **head);
+void calculare_volat(node *head, FILE *fout, int n);

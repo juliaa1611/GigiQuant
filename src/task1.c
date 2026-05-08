@@ -95,3 +95,16 @@ void citirefisiertask1(FILE *fin, int n, node **head) {
         adaugare(head, temp);
     }
 }
+
+void calculare_volat(node *head, FILE *fout, int n) {
+    double rand_mediu = (calculareRandamentTotal(head) / (n - 1));
+    fprintf(fout, "%.3lf\n", trunchiere(rand_mediu));
+    double volat = sqrt((deviatia_standard(head, rand_mediu))/(n - 1));
+    fprintf(fout, "%.3lf\n", trunchiere(volat));
+    double sharpe_ratio;
+    if (volat) 
+        sharpe_ratio = (rand_mediu / volat);
+    else  
+        sharpe_ratio = 0;
+    fprintf(fout, "%.3lf\n", trunchiere(sharpe_ratio));
+}

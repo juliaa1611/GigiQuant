@@ -1,6 +1,7 @@
 #include "task1.h"
 #include "task2.h"
 #include "task3.h"
+#include "task4.h"
 
 int main(int argc, const char* argv[])
 {
@@ -28,26 +29,34 @@ int main(int argc, const char* argv[])
 
     if (isdigit(buffer[0])) { //daca e nr => task1 sau task4
         int n = atoi(buffer);
-        double temp1, temp2; 
-        fscanf(fin, "%lf", &temp1); //a doua data e la fel pt t1 si t2
+        double size, temp; 
+        fscanf(fin, "%lf", &size); //a doua data e la fel pt t1 si t2
         
-        if(verificaretask1(&temp2, fin) == 1){ //daca gaseste '.' => t1
+        if(verificaretask1(&temp, fin) == 1){ //task1
             node *head = NULL;
-            adaugare(&head, temp1);
-            adaugare(&head, temp2);
+            adaugare(&head, size);
+            adaugare(&head, temp);
             citirefisiertask1(fin, n, &head);
             calculare_volat(head, fout, n);
             stergereLista(&head);
         }
-        else {
-            fprintf(fout, "task 4\n");
-        }
+        else { //task4--------------------------------
+            int nr_obs = (int)temp; double P_target, P_start;  
+            fscanf(fin, "%lf", &P_start); fscanf(fin, "%lf", &P_target);
+
+            Graph *graph; int capacity = 500;
+            graph = create_graph(capacity);
+            build_graph(graph, n, size, fin, P_start, fout);
+            print_graph(graph, capacity, fout);
+
+            empty_graph(graph, capacity);
+        } //-------------------------------------------
     }
     else { //nu e nr => task 2 sau 3
         if (strchr(buffer, ',') == NULL) { //task 2 
             node *piata1 = NULL; char p1[32]; node *piata2 = NULL; char p2[32]; node *piata3 = NULL; char p3[32];
             citire_piete(&piata1, &piata2, &piata3, p1, p2, p3, buffer, fin);
-            afisare_piete(piata1, piata2, piata3, p1, p2, p3, buffer, fout);
+            afisare_piete(&piata1, &piata2, &piata3, p1, p2, p3, buffer, fout);
 
             deleteStack(&piata1); deleteStack(&piata2); deleteStack(&piata3);
         }
@@ -64,7 +73,6 @@ int main(int argc, const char* argv[])
             char mtemp[12][24]; int total_sim = 0;
             actiuneSimetrica(root->left, root->right, vector, nra, mtemp, &total_sim, fout);
             afisareSimetrica(mtemp, vector, nra, total_sim, fout);
-
             deleteTree(&root);
         }
     }

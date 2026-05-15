@@ -86,12 +86,12 @@ void citire_piete(node **piata1, node **piata2, node **piata3, char *p1, char *p
         push(piata3, atof(buffer));
 }
 
-void afisare_piete (node *piata1, node *piata2, node *piata3, const char *p1, const char *p2, const char *p3, char *buffer, FILE *fout) {
+void afisare_piete (node **piata1, node **piata2, node **piata3, const char *p1, const char *p2, const char *p3, char *buffer, FILE *fout) {
     int zi = 1;
-    while (piata1 != NULL && piata2 != NULL && piata3 != NULL) {
-        float x = pop(&piata1);
-        float y = pop(&piata2);
-        float z = pop(&piata3);
+    while (*piata1 != NULL && *piata2 != NULL && *piata3 != NULL) {
+        float x = pop(piata1);
+        float y = pop(piata2);
+        float z = pop(piata3);
 
         Queue *Qhead = createQueue();
         if (x == y && y != z) {

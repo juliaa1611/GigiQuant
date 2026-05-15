@@ -6,6 +6,7 @@
 #include <ctype.h>
 
 typedef struct node {
+    int graph_value;
     double valoare;
     double randament;
     struct node *next;

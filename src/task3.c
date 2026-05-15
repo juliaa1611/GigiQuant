@@ -39,16 +39,13 @@ void insertTree(tree *root, actiune v[], int i, int nrp) {
     }
 }
 
-void deleteTreeUtil(struct tree* root) {
-       if (root == NULL) return;
-       deleteTreeUtil(root->left);
-       deleteTreeUtil(root->right);
-       free(root);
-}
-
-void deleteTree(struct tree** node_ref) {
-  deleteTreeUtil(*node_ref);
-  *node_ref = NULL;
+void deleteTree(struct tree** root) {
+    tree *temp = *root;
+    if (*root == NULL) return;
+    deleteTree(&temp->left);
+    deleteTree(&temp->right);
+    free(temp);
+    *root = NULL;
 }
 
 int isLeaf(const tree *root) {

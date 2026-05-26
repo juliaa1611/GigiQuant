@@ -1,12 +1,12 @@
 #include "task3.h"
 
-tree *newTreeNode(const char *numeNou) {
-    tree *node = malloc(sizeof(struct tree));
-    if (node == NULL) return NULL;
-    strcpy(node->nume, numeNou);
-    node->left = NULL;
-    node->right = NULL;
-    return node;
+void newTreeNode(tree **node, const char *numeNou) {
+    *node = malloc(sizeof(tree));
+    if (*node != NULL) {
+        strcpy((*node)->nume, numeNou);
+        (*node)->left = NULL;
+        (*node)->right = NULL;
+    }
 }
 
 void modifyTree(tree *root, const char *added) {
@@ -24,14 +24,14 @@ void insertTree(tree *root, actiune v[], int i, int nrp) {
     for (int j = 1; j < nrp; j ++) {
         if (v[i].pret[j] >= v[i].pret[j - 1]) { // -> dreapta
             if(curent->right == NULL) 
-                curent->right = newTreeNode(v[i].nume);
+                newTreeNode(&(curent->right), v[i].nume);
             else 
                 modifyTree(curent->right, v[i].nume);
             curent = curent->right;
         }
         else {
             if(curent->left == NULL) 
-                curent->left = newTreeNode(v[i].nume);
+                newTreeNode(&(curent->left), v[i].nume);
             else 
                 modifyTree(curent->left, v[i].nume);
             curent = curent->left;
@@ -39,13 +39,11 @@ void insertTree(tree *root, actiune v[], int i, int nrp) {
     }
 }
 
-void deleteTree(struct tree** root) {
-    tree *temp = *root;
-    if (*root == NULL) return;
-    deleteTree(&temp->left);
-    deleteTree(&temp->right);
-    free(temp);
-    *root = NULL;
+void deleteTree(tree* root) {
+    if (root == NULL) return;
+    deleteTree(root->left);
+    deleteTree(root->right);
+    free(root);
 }
 
 int isLeaf(const tree *root) {

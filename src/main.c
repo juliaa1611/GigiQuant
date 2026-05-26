@@ -41,14 +41,15 @@ int main(int argc, const char* argv[])
             stergereLista(&head);
         }
         else { //task4--------------------------------
-            int nr_obs = (int)temp; double P_target, P_start;  
+            int K = (int)temp; double P_target, P_start;  
             fscanf(fin, "%lf", &P_start); fscanf(fin, "%lf", &P_target);
-
+            P_start = find_interval(P_start, size, P_start);
+            P_target = find_interval(P_target, size, P_start);
             Graph *graph; int capacity = 500;
+            int intervals[n];
             graph = create_graph(capacity);
-            build_graph(graph, n, size, fin, P_start, fout);
-            print_graph(graph, capacity, fout);
-
+            build_graph(graph, n, size, fin, P_start, fout, intervals);
+            markov(graph, capacity, K, P_start, P_target, fout);
             empty_graph(graph, capacity);
         } //-------------------------------------------
     }
@@ -66,14 +67,14 @@ int main(int argc, const char* argv[])
             read_names(vector, temp, &nra); //citirea actiunilor de pe prima linie
             read_value(vector, &nrp, temp, buffer, fin); // nr de actiuni (nr de el de pe linie)
 
-            tree *root = newTreeNode(""); //in root sunt toate actiunile, dar nu ne intereseaza
+            tree *root = NULL; newTreeNode(&root, ""); //in root sunt toate actiunile, dar nu ne intereseaza
             for (int i = 0; i < nra; i ++) 
                 insertTree(root, vector, i, nrp);
 
             char mtemp[12][24]; int total_sim = 0;
             actiuneSimetrica(root->left, root->right, vector, nra, mtemp, &total_sim, fout);
             afisareSimetrica(mtemp, vector, nra, total_sim, fout);
-            deleteTree(&root);
+            deleteTree(root);
         }
     }
 

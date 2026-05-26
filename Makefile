@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -std=c11 -Wno-incompatible-pointer-types
-LDFLAGS = -lm
+LDFLAGS = -lm -lcurl
 
 BIN=test
 

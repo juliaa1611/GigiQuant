@@ -73,12 +73,14 @@ Queue* createQueue() {
 }
 
 void citire_piete(node **piata1, node **piata2, node **piata3, char *p1, char *p2, char *p3, char *buffer, FILE *fin) {
-    sscanf(buffer, "%31[^\r\n]", p1);
-    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
-        push(piata1, atof(buffer));
+    sscanf(buffer, "%31[^\r\n]", p1); //salvam numele primei piete
+    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9') //cat timp inca citim numere
+        push(piata1, atof(buffer)); //adaugam la STIVA pietei corespunzatoare
 
-    sscanf(buffer, "%31[^\r\n]", p2);
-    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9')
+    //while-ul anterior s-a oprit cand nu a citit un numar
+    //deci buffer contine acum numele pietei urmatoare pe care il putem salva
+    sscanf(buffer, "%31[^\r\n]", p2);  
+    while(fgets(buffer, 128, fin) != NULL && buffer[0] >= '0' && buffer[0] <= '9') //continuam citirea numerelor
         push(piata2, atof(buffer));
 
     sscanf(buffer, "%31[^\r\n]", p3);
@@ -87,18 +89,20 @@ void citire_piete(node **piata1, node **piata2, node **piata3, char *p1, char *p
 }
 
 void afisare_piete (node **piata1, node **piata2, node **piata3, const char *p1, const char *p2, const char *p3, char *buffer, FILE *fout) {
-    int zi = 1;
+    int zi = 1; 
+
+    Queue *Qhead = createQueue(); //coada in care vom salva toate zilele
     while (*piata1 != NULL && *piata2 != NULL && *piata3 != NULL) {
-        float x = pop(piata1);
+    //cat timp exista elemente in TOATE cele 3 stive: 
+        float x = pop(piata1); //extragem fiecare element
         float y = pop(piata2);
         float z = pop(piata3);
 
-        Queue *Qhead = createQueue();
-        if (x == y && y != z) {
-            sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - z), p3);
-            Qpush(Qhead, buffer);
+        if (x == y && y != z) { //daca (E) posibilitate de arbitraj conform doc. 
+            sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - z), p3); //salvam in buffer
+            Qpush(Qhead, buffer); // adaugam in coada
         }
-        if (x == z && z != y) {
+        if (x == z && z != y) { //analog
             sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(x - y), p2);
             Qpush(Qhead, buffer);
         }
@@ -106,14 +110,15 @@ void afisare_piete (node **piata1, node **piata2, node **piata3, const char *p1,
             sprintf(buffer, "ziua %d - %.2lf - %s\n", zi, fabs(y - x), p1);
             Qpush(Qhead, buffer);
         } 
-        while (Qhead->front != NULL) {
-            char *msg = Qpop(Qhead); 
-            if (msg != NULL) {
-                fprintf(fout, "%s", msg);
-                free(msg);
-            }
-        }
-        free(Qhead);
-        zi ++;
+        zi ++; //trecem la urmatoarea zi
     }
+
+    while (Qhead->front != NULL) {
+        char *msg = Qpop(Qhead); 
+        if (msg != NULL) {
+            fprintf(fout, "%s", msg); //afisam pe rand el. din coada
+            free(msg); //eliberam si memoria in acelasi timp
+        }
+    }
+    free(Qhead); //eliberam si coada
 } 

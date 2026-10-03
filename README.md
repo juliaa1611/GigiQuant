@@ -1,25 +1,33 @@
-#GIGIQUANT - Manager de portofoliu
+GigiQuant - Portfolio Manager
 
- DESCRIEREA PROIECTULUI:
+Overview
 
- Acest proiect conține o serie de 4 task-uri și un bonus structurate sub forma unor interviuri pentru poziția de manager de portofoliu la compania fictivă „GigiQuant”. Scopul principal este utilizarea unor structuri de date clasice (liste, stive, cozi, arbori binari, grafuri) și dezvoltarea de algoritmi pentru a rezolva probleme concrete din domeniul financiar.
+This project is built around a series of interview-style tasks for a portfolio manager role at a fictional company called "GigiQuant". The main goal is to apply classic data structures (like linked lists, stacks, queues, binary trees, and graphs) and custom algorithms to solve practical financial problems.
 
- Toate cerințele și detaliile de implementare sunt bazate pe documentul de referință ProiectPA_GigiQ.pdf.
+(All requirements and implementation details are based on the ProiectPA_GigiQ.pdf reference document).
 
- COMPONENETELE PROIECTULUI:
+What's inside
 
- Task 1: Sharpe Ratio
-Descriere: Se evaluează performanța și profitabilitatea unui portofoliu raportată la riscul asumat.
- Implementare: Evoluția portofoliului este implementată prin liste simplu înlănțuite care stochează valorile și randamentele zilnice. Pe baza acestora, algoritmul calculează randamentul mediu și volatilitatea (deviația standard), afișând indicatorul Sharpe Ratio trunchiat la 3 zecimale.
+Task 1: Sharpe Ratio
 
- Task 3: Diversificarea Portofoliului
-Descriere: Optimizează un portofoliu prin combinarea unor acțiuni volatile în oglindă pentru a obține o structură stabilă.
- Implementare: Mișcările zilnice ale prețurilor (creșteri sau scăderi) sunt stocate recursiv într-un arbore binar. Prin parcurgerea structurii generate, algoritmul identifică „opusul” sau oglinditul fiecărei acțiuni pentru a realiza diversificarea.
+Goal: Evaluate a portfolio's performance and profitability relative to the risk taken.
 
- Task 4: Lanțuri Markov
- Descriere: Se calculează șansele ca o acțiune să ajungă de la un anumit preț la un preț țintă după un număr de zile.
- Implementare: Prețurile sunt grupate în intervale fixe de dimensiune K, fiecare interval fiind un nod din graf. Programul parcurge graful zilnic pentru a calcula probabilitatea finală ca o acțiune să ajungă de la un preț de start la un preț țintă într-un interval de zile. Rezultatul este afișat ca o fracție ireductibilă.
- 
- Bonus: Integrare API Financiar
- Descriere: Extinde funcționalitatea proiectului prin conectarea directă la o sursă de date externe în timp real.
- Implementare: Folosește biblioteca libcurl pentru a efectua cereri HTTP către API-ul Yahoo Finance și librăria cJSON pentru a procesa răspunsurile primite. Funcția principală (get_open_prices) extrage prețurile de deschidere ale unui simbol acționar (ex: AAPL) pentru a fi utilizate în calculele din task-ul 1.
+Under the hood: I used singly linked lists to keep track of daily portfolio values and returns. Based on these, the algorithm calculates the average return and volatility (standard deviation) to figure out the Sharpe Ratio, truncated to 3 decimal places.
+
+Task 3: Portfolio Diversification
+
+Goal: Optimize a portfolio by pairing volatile stocks with their exact opposites to build a stable, balanced structure.
+
+Under the hood: Daily price movements (ups and downs) are stored recursively in a binary tree. By traversing this tree, the algorithm finds the "mirror" of each stock to effectively diversify the portfolio.
+
+Task 4: Markov Chains
+
+Goal: Calculate the odds of a stock moving from a starting price to a specific target price over a set number of days.
+
+Under the hood: Prices are grouped into fixed-size intervals (K), with each interval acting as a node in a graph. The program traverses the graph day by day to calculate the final probability, outputting the result as an irreducible fraction.
+
+Bonus: Financial API Integration
+
+Goal: Hook the project up to real-time external data.
+
+Under the hood: I used libcurl to make HTTP requests to the Yahoo Finance API and cJSON to parse the incoming data. The core function (get_open_prices) pulls opening prices for a specific stock ticker (e.g., AAPL) so they can be fed directly into the Task 1 calculations.
